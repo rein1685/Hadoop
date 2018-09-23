@@ -7,3 +7,7 @@
 164.125.234.63 : SNamenode -> Zookeeper , Standby Namenode , Journalnode , Datanode , NodeManager<br>
 164.125.234.64 : Datanode01 -> Zookeeper , Journalnode , Datanode , NodeManager<br>
 164.125.234.65 : Datanode02 -> Datanode , NodeManager<br>
+
+IoT_Server<br>
+
+IoT_Server의 프로젝트를 하둡으로 포팅한 것.
