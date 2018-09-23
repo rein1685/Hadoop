@@ -1,0 +1,20 @@
+127.0.0.1	hadoop.fully.qualified.domain.com	localhost
+#127.0.1.1	user-ThinkPad-E450
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+164.125.234.65 Datanode02
+164.125.234.62 ANamenode
+164.125.234.63 SNamenode
+164.125.234.64 Datanode01
+
+164.125.234.65 wjlee-TP-T420s
+164.125.234.62 user-ThinkPad-E450
+164.125.234.63 NoteAP2
+164.125.234.64 NoteAP1
+
