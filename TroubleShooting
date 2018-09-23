@@ -21,7 +21,9 @@ ff02::2 ip6-allrouters
 164.125.234.63 SNamenode
 164.125.234.64 Datanode01
 
-라고 /etc/hosts를 저장하고, 하둡의 설정파일에서 Datanode02 , Datanode01, SNamenode , ANamenode로 하둡의 설정파일을 저장했다고 하더라도 하둡이 실제로 참조하는 호스트명은 제일 위에 있는 user-ThinkPad-E450일 수도 있다. 만약 그렇게 되면, 하둡의 다른 노드들은 user-ThinkPad-E450의 주소를 알지 못해 연결을 하지 못하고 리소스가 할당되지 못한다. 그렇기 때문에
+라고 /etc/hosts를 저장하고, 하둡의 설정파일에서 Datanode02 , Datanode01, SNamenode , ANamenode로 하둡의 설정파일을 저장했다고 하더라도
+하둡이 실제로 참조하는 호스트명은 제일 위에 있는 user-ThinkPad-E450일 수도 있다. 만약 그렇게 되면, 하둡의 다른 노드들은
+user-ThinkPad-E450의 주소를 알지 못해 연결을 하지 못하고 리소스가 할당되지 못한다. 그렇기 때문에
 
 164.125.234.65 wjlee-TP-T420s
 164.125.234.62 user-ThinkPad-E450
@@ -35,4 +37,22 @@ ff02::2 ip6-allrouters
 
 작업의 로그파일을 보면 “RUNNING to FAIL_CONTAINER_CLEANUP“ 이라는 에러문구가 나오는 경우이다.
 
-https://stackoverflow.com/questions/42416921/hadoop-mapreduce-teragen-fail-container-cleanup 의 StackOverflow 사이트를 참조하여 /etc/hosts 파일의 127.0.1.1      user-ThinkPad-E450 부분을 주석처리 하였다. 이는 밑에 164.125.234.62 user-ThinkPad-E450 부분이 있기 때문에 주석처리만 한 것이고, 만약에 이 부분이 없으면 127.0.1.1부분을 공인주소로 대체한다.
+https://stackoverflow.com/questions/42416921/hadoop-mapreduce-teragen-fail-container-cleanup 의 StackOverflow 사이트를 참조하여
+/etc/hosts 파일의 127.0.1.1      user-ThinkPad-E450 부분을 주석처리 하였다. 이는 밑에 164.125.234.62 user-ThinkPad-E450 부분이
+있기 때문에 주석처리만 한 것이고, 만약에 이 부분이 없으면 127.0.1.1부분을 공인주소로 대체한다.
+
+
+
+HBase
+
+1. HMaster가 실행되자마자 꺼지는 경우.
+	로그파일을 보면 Connection refuse로 뜨는데, 이는 hdfs의 포트 문제일 가능성이 있다.
+
+※인터넷 문서들을 보면 보통 hbase-site.xml 파일의 속성 중에 hbase.rootdir의 값이 hdfs://ANamenode:9000/hbase로 되어있는 사이트가 많은데
+하둡 hdfs의 포트 기본값은 9000번 아니면 8020번이다. 자신의 포트가 9000번으로 되어있는지 확인해본다. 본 실험에서는 8020번이였다.
+
+
+2. HMaster가 실행되자마자 꺼지는 경우
+	로그파일을 보면 Operation category READ is not supported in state standby로 뜨는데, 스탠바이 네임노드가 켜져있는게 원인
+
+해결방안은 모르겠음. standby 네임노드를 꺼서 해결함.
