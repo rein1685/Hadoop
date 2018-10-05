@@ -79,15 +79,20 @@ public class HBase {
 		hTable.put(p);
 	}
 	
-	public void scanDatas() throws Exception{
+	public ArrayList scanDatas() throws Exception{
 		Scan s = new Scan();
 		ResultScanner scanner = hTable.getScanner(s);
+		
+		ArrayList return_list = new ArrayList();
 
 		try {
+			
 			for (Result rowResult = scanner.next(); rowResult != null; rowResult = scanner.next()) {
 				System.out.println("row: " + rowResult.toString());
 				
 				try {
+					HashMap<String, String> map = new HashMap<String, String>();
+					
 					byte[] bcds = rowResult.getValue(Bytes.toBytes("cf"),Bytes.toBytes("cds"));
 					byte[] bcreated_at = rowResult.getValue(Bytes.toBytes("cf"),Bytes.toBytes("created_at"));
 					byte[] btemp = rowResult.getValue(Bytes.toBytes("cf"),Bytes.toBytes("temp"));
@@ -100,12 +105,21 @@ public class HBase {
 					String humidity = new String(bhumidity);
 					String vol_bat = new String(bvol_bat);
 					
+					map.put("created_at" , created_at);
+					map.put("temp" , temp);
+					map.put("humidity" , humidity);
+					map.put("cds" , cds);
+					map.put("vol_bat" , vol_bat);
+					
+					return_list.add(map);
+					
 					System.out.println(cds + " , " + created_at);
 				} catch(Exception e) {}
 				
 			}
 		} finally {
 			scanner.close();
+			return return_list;
 		}
 	}
 	
