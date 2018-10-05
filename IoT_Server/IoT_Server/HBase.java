@@ -90,8 +90,16 @@ public class HBase {
 				try {
 					byte[] bcds = rowResult.getValue(Bytes.toBytes("cf"),Bytes.toBytes("cds"));
 					byte[] bcreated_at = rowResult.getValue(Bytes.toBytes("cf"),Bytes.toBytes("created_at"));
+					byte[] btemp = rowResult.getValue(Bytes.toBytes("cf"),Bytes.toBytes("temp"));
+					byte[] bhumidity = rowResult.getValue(Bytes.toBytes("cf"),Bytes.toBytes("humidity"));
+					byte[] bvol_bat = rowResult.getValue(Bytes.toBytes("cf"),Bytes.toBytes("vol_bat"));
+					
 					String cds = new String(bcds);
 					String created_at = new String(bcreated_at);
+					String temp = new String(btemp);
+					String humidity = new String(bhumidity);
+					String vol_bat = new String(bvol_bat);
+					
 					System.out.println(cds + " , " + created_at);
 				} catch(Exception e) {}
 				
