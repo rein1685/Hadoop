@@ -18,7 +18,12 @@ public class App {
 		
 		hb.putData(hm);*/
 		
-		hb.scanDatas();
+		ArrayList datas = hb.scanDatas();
+		
+		for(HashMap<String, String> data : datas)
+		{
+			System.out.println(data.get("created_at"));
+		}
 		
 		//CoapServer server = new CoapServer();
 		//server.add(new MyResource("hello"));
