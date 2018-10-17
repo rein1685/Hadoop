@@ -19,5 +19,8 @@ public class App {
 		CoapServer server = new CoapServer();
 		server.add(new MyResource("hello" , hb));
 		server.start();
+		
+		QuartzSchedule sch;
+		sch.start();
 	}
 }
