@@ -54,9 +54,9 @@ public class SampleJob implements Job {
                 fw.write(formatString);
                 fw.newLine();
             }
-            
-            fw.flush();
-            fw.close();
         }
+                                                                  
+        fw.flush();
+        fw.close();
     }
 }
