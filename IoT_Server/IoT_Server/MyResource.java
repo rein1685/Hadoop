@@ -9,11 +9,16 @@ import org.eclipse.californium.core.CoapResource;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 
 public class MyResource extends CoapResource {
-	public HBase hb;
+	public HBase hb_;
 	
 	public MyResource(String start) {
 		super(start);
-		this.hb = new HBase("164.125.234.62" , "PowerTest");
+		this.hb_ = new HBase("164.125.234.62" , "PowerTest");
+	}
+	
+	public MyResource(String start , HBase hb) {
+		super(start);
+		this.hb_ = hb;
 	}
 	
 	@Override
