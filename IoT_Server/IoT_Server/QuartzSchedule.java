@@ -18,7 +18,7 @@ import org.quartz.CronTrigger;
  * @author homo.efficio@gmail.com
  * created on 2018-08-12
  */
-public class QuartzTest {
+public class QuartzSchedule {
 
     public void start() throws SchedulerException, InterruptedException {
 
