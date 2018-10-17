@@ -20,7 +20,7 @@ import org.quartz.CronTrigger;
  */
 public class QuartzTest {
 
-    public static void main(String[] args) throws SchedulerException, InterruptedException {
+    public void start() throws SchedulerException, InterruptedException {
 
     	SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
 
@@ -37,7 +37,7 @@ public class QuartzTest {
     	  Trigger trigger = newTrigger()
     	      .withIdentity("myTrigger", "group1")
     	      .startNow()
-    	      .withSchedule(org.quartz.CronScheduleBuilder.cronSchedule("0 0/5 * * * ?"))
+    	      .withSchedule(org.quartz.CronScheduleBuilder.cronSchedule("0 0 0 * * *"))
     	      .build();
 
     	  // Tell quartz to schedule the job using our trigger
