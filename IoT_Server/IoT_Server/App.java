@@ -11,22 +11,13 @@ public class App {
 		
 		hb = new HBase("164.125.234.62" , "PowerTest");
 		
-		
-		HashMap hm = new HashMap();
-		/*hm.put("hello1", "value1");
-		hm.put("hello2", "value2");
-		
-		hb.putData(hm);*/
-		
-		ArrayList datas = hb.scanDatas();
-		
-		for(HashMap<String, String> data : datas)
+		/*for(HashMap<String, String> data : datas)
 		{
 			System.out.println(data.get("created_at"));
-		}
+		}*/
 		
-		//CoapServer server = new CoapServer();
-		//server.add(new MyResource("hello"));
-		//server.start();
+		CoapServer server = new CoapServer();
+		server.add(new MyResource("hello" , hb));
+		server.start();
 	}
 }
